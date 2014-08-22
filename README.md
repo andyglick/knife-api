@@ -1,8 +1,8 @@
 # Knife-API
 
-Decided to change the name of this gem from knife-dsl to knife-api because this gem exposes methods from the knife cli 
-gem and makes them available to ruby code. A library that lets you drive a command line tool programmaticly offers an 
-API and is not a DSL.   
+Decided to change the name of this gem from knife-dsl to knife-api because the gem exposes methods from knife, the 
+workhorse command line tool from the chef system and makes the methods available to ruby code. A library that lets 
+you drive a command line tool programmaticly offers an API and is not a DSL.   
 
 A small library that lets you drive Chef's `knife` programmatically
 
