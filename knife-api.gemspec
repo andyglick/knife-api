@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["andyglick@gmailcom"]
   gem.description   = %q{A small library that lets you drive Chef's 'knife' programmatically}
   gem.summary       = %q{A small library that lets you drive Chef's 'knife' programmatically}
-  gem.homepage      = "https://github.com/chef-workflow/knife-api"
+  gem.homepage      = "https://github.com/andyglick/knife-api"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
