@@ -1,9 +1,9 @@
 require 'chef/application/knife'
-require 'knife/dsl/version'
+require 'knife/api/version'
 require 'stringio'
 
-module Chef::Knife::DSL
-  module Chef::Knife::DSL::Support
+module Chef::Knife::API
+  module Chef::Knife::API::Support
     def self.run_knife(command, args)
       unless command.kind_of?(Array)
         command = command.to_s.split(/[\s_]+/)
@@ -24,7 +24,7 @@ module Chef::Knife::DSL
   end
 
   def knife(command, args=[])
-    Chef::Knife::DSL::Support.run_knife(command, args)
+    Chef::Knife::API::Support.run_knife(command, args)
   end
 
   def knife_capture(command, args=[], input=nil)
@@ -39,7 +39,7 @@ module Chef::Knife::DSL
     Object.const_set("STDIN", input ? StringIO.new(input, 'r') : null)
     $VERBOSE = warn
 
-    status = Chef::Knife::DSL::Support.run_knife(command, args)
+    status = Chef::Knife::API::Support.run_knife(command, args)
     return STDOUT.string, STDERR.string, status
   ensure
     warn = $VERBOSE 
@@ -53,11 +53,11 @@ module Chef::Knife::DSL
 end
 
 class << eval("self", TOPLEVEL_BINDING)
-  include Chef::Knife::DSL
+  include Chef::Knife::API
 end
 
-if defined? Rake::DSL
-  module Rake::DSL
-    include Chef::Knife::DSL
+if defined? Rake::API
+  module Rake::API
+    include Chef::Knife::API
   end
 end

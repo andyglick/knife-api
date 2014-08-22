@@ -1,4 +1,8 @@
-# Knife-DSL
+# Knife-API
+
+Decided to change the name of this gem from knife-dsl to knife-api because this gem exposes methods from knife cli gem
+and makes them available to ruby code. A library that lets you drive a command line tool programmaticly offers an API 
+and is not a DSL.   
 
 A small library that lets you drive Chef's `knife` programmatically
 
@@ -6,7 +10,7 @@ A small library that lets you drive Chef's `knife` programmatically
 
 Add this line to your application's Gemfile:
 
-    gem 'knife-dsl'
+    gem 'knife-api'
 
 And then execute:
 
@@ -14,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install knife-dsl
+    $ gem install knife-api
 
 ## Usage
 
@@ -32,7 +36,7 @@ It provides two calls, `knife` and `knife_capture` that are injected into the
 top-level namespace automatically. Additionally, if you are using `rake`, it
 will detect this and make it available to rake's DSL as well.
 
-If you wish to use this code elsewhere, just `include Chef::Knife::DSL` into
+If you wish to use this code elsewhere, just `include Chef::Knife::API` into
 your classes/modules.
 
 Both commands take two argument-passing styles. Both use an array of strings to
@@ -41,7 +45,7 @@ make the actual subcommand stand out: if you supply a symbol or string with
 underscore-delimited subcommand names, it will automatically convert this for
 you. This allows you to visually distinguish a command from its arguments.
 
-knife-dsl allows the use of alternative Chef Configs via the `CHEF_CONFIG`
+knife-api allows the use of alternative Chef Configs via the `CHEF_CONFIG`
 environment variable.
 
 ## Example
@@ -52,7 +56,7 @@ with `pp`. The practical applications of both tasks are pretty specious, but
 they're small and display the functionality.
 
 ```ruby
-require 'knife/dsl'
+require 'knife/api'
 require 'pp'
 require 'json'
 
