@@ -1,5 +1,15 @@
 # Knife-API
 
+Erik Hollensbe first released knife-dsl in November of 2012. His last release took place in December of 2012. Today it 
+is September 2014. knife-dsl has 3 pull requests, each of which would relax the existing constraint on the chef version
+so that knife-dsl could work with chef 11. 
+ 
+Rather than wait for Erik, I decided to take this on, and to indicate a change of ownership I changed the name of the 
+gem to knife-api as I explained below. I released 0.1.1 of knife-api on August 23 2014, and the only change besides the 
+name was to bump the compatible chef version to be less than chef 12. Chef 12 is the process of being released so I am
+taking a proactive stance and pushing the chef version to any version less than chef 13 with the release of knife-api 
+0.1.2.
+ 
 Decided to change the name of this gem from knife-dsl to knife-api because the gem exposes methods from knife, the 
 workhorse command line tool from the chef system and makes the methods available to ruby code. A library that lets 
 you drive a command line tool programmatically offers an API and is not a DSL.   
