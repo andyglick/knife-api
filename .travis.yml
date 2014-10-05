@@ -5,5 +5,3 @@ rvm:
   - 2.1.1
   - 2.2.2
 script:
-  - bundle exec rubocop
-  - bundle exec rspec test
