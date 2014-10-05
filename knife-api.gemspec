@@ -4,18 +4,20 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'knife/api/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "knife-api"
+  gem.name          = 'knife-api'
   gem.version       = Chef::Knife::API::VERSION
-  gem.authors       = ["Erik Hollensbe", "Andy Glick"]
-  gem.email         = ["andyglick@gmailcom"]
-  gem.description   = %q{A small library that lets you drive Chef's 'knife' programmatically}
-  gem.summary       = %q{A small library that lets you drive Chef's 'knife' programmatically}
-  gem.homepage      = "https://github.com/andyglick/knife-api"
+  gem.authors       = ['Erik Hollensbe', 'Andy Glick']
+  gem.email         = ['andyglick@gmailcom']
+  gem.description   =
+    %w(A small library that lets you drive Chef's 'knife' programmatically)
+  gem.summary       =
+    %w(A small library that lets you drive Chef's 'knife' programmatically)
+  gem.homepage      = 'https://github.com/andyglick/knife-api'
 
-  gem.files         = `git ls-files`.split($/)
+  gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ["lib"]
+  gem.require_paths = ['lib']
 
   gem.add_dependency 'chef', '>= 10.0', '< 13.0.0'
   gem.add_development_dependency 'rake', '~> 10.3.2'
