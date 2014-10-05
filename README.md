@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/andyglick/knife-api.png)](https://travis-ci.org/andyglick/knife-api)
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/andyglick/knife-api)
+
 # Knife-API
 
 Erik Hollensbe first released knife-dsl in November of 2012. His last release took place in December of 2012. Today it 
