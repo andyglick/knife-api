@@ -2,8 +2,7 @@
 [![Gem Version](https://badge.fury.io/rb/knife-api.svg)](http://badge.fury.io/rb/knife-api)
 [![Dependency Status](https://gemnasium.com/andyglick/knife-api.svg)](https://gemnasium.com/andyglick/knife-api)
 [![Coverage Status](https://img.shields.io/coveralls/andyglick/knife-api.svg)](https://coveralls.io/r/andyglick/knife-api)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/andyglick/knife-api)
-
+[![Code Climate](https://codeclimate.com/github/andyglick/knife-api/badges/gpa.svg)](https://codeclimate.com/github/andyglick/knife-api)
 # Knife-API
 
 Erik Hollensbe first released knife-dsl in November of 2012. His last release took place in December of 2012. Today it 
