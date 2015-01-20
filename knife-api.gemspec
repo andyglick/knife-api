@@ -20,5 +20,5 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'chef', '>= 10.32', '< 13.0.0'
-  gem.add_development_dependency 'rake', '~> 10.3.2'
+  gem.add_development_dependency 'rake', '>= 10.4.2'
 end
