@@ -8,10 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Chef::Knife::API::VERSION
   gem.authors       = ['Erik Hollensbe', 'Andy Glick']
   gem.email         = ['andyglick@gmailcom']
-  gem.description   =
-    %w(A small library that lets you drive Chef's 'knife' programmatically)
-  gem.summary       =
-    %w(A small library that lets you drive Chef's 'knife' programmatically)
+  gem.description   = "A small library that lets you drive Chef's 'knife' programmatically"
+  gem.summary       = "A small library that lets you drive Chef's 'knife' programmatically"
   gem.homepage      = 'https://github.com/andyglick/knife-api'
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
