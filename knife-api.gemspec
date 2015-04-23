@@ -6,7 +6,7 @@ require 'knife/api/version'
 Gem::Specification.new do |gem|
   gem.name          = 'knife-api'
   gem.version       = Chef::Knife::API::VERSION
-  gem.authors       = ['Erik Hollensbe', 'Andy Glick']
+  gem.authors       = ['Erik Hollensbe', 'Andy Glick', 'James La Spada']
   gem.email         = ['andyglick@gmailcom']
   gem.description   = "A small library that lets you drive Chef's 'knife' programmatically"
   gem.summary       = "A small library that lets you drive Chef's 'knife' programmatically"
