@@ -2,8 +2,8 @@ require 'chef/application/knife'
 require 'knife/api/version'
 require 'stringio'
 
-module Chef
-  module Knife
+class Chef
+  class Knife
     # adding API module to existing Chef::Knife packaging
     module API
       # adding Support module

@@ -6,7 +6,7 @@ require 'knife/api/version'
 Gem::Specification.new do |gem|
   gem.name          = 'knife-api'
   gem.version       = Chef::Knife::API::VERSION
-  gem.authors       = ['Erik Hollensbe', 'Andy Glick']
+  gem.authors       = ['Erik Hollensbe', 'Andy Glick', 'James La Spada']
   gem.email         = ['andyglick@gmailcom']
   gem.description   = "A small library that lets you drive Chef's 'knife' programmatically"
   gem.summary       = "A small library that lets you drive Chef's 'knife' programmatically"
@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
 
   gem.add_dependency 'chef', '>= 10.32', '< 13.0.0'
-  gem.add_dependency 'chef-zero', '>= 3.2.1'
+  gem.add_dependency 'chef-zero', '>= 2.2.1'
   gem.add_dependency 'ohai', '> 7.0.0', '< 9.0.0'
   gem.add_dependency 'json', '>= 1.8.2'
 
