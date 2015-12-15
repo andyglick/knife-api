@@ -9,18 +9,14 @@ class Chef
       # adding Support module
       module Support
         def self.run_knife(command, args)
-          unless command.is_a?(Array)
-            command = command.to_s.split(/[\s_]+/)
-          end
-
+          command = command.to_s.split(/[\s_]+/) unless command.is_a?(Array)
           command += args
-
-          if ENV['CHEF_CONFIG']
-            command += ['-c', ENV['CHEF_CONFIG']]
-          end
+          command += ['-c', ENV['CHEF_CONFIG']] if ENV['CHEF_CONFIG']
 
           opts = Chef::Application::Knife.new.options
           Chef::Knife.run(command, opts)
+          # believe this to be a problem -- if knife command would otherwise
+          # indicate a chef error this creates a false positive
           return 0
         rescue SystemExit => e
           return e.status
@@ -32,11 +28,17 @@ class Chef
       end
 
       def knife_capture(command, args = [], input = nil)
-        null = Gem.win_platform? ? File.open('NUL:', 'r') : File.open('/dev/null', 'r')
+        if Gem.win_platform? == null
+          File.open('NUL:', 'r')
+        else
+          File.open('/dev/null', 'r')
+        end
 
         warn = $VERBOSE
         $VERBOSE = nil
-        stderr, stdout, stdin = STDERR, STDOUT, STDIN
+        stderr = STDERR
+        stdout = STDOUT
+        stdin = STDIN
 
         Object.const_set('STDERR', StringIO.new('', 'r+'))
         Object.const_set('STDOUT', StringIO.new('', 'r+'))
@@ -58,7 +60,7 @@ class Chef
   end
 end
 
-class << eval("self", TOPLEVEL_BINDING)
+class << eval('self', TOPLEVEL_BINDING)
   include Chef::Knife::API
 end
 
