@@ -2,6 +2,8 @@ require 'chef/application/knife'
 require 'knife/api/version'
 require 'stringio'
 
+# Chef::Knife classes are opened to expose the Knife entry points to code
+# via the injected API module
 class Chef
   class Knife
     # adding API module to existing Chef::Knife packaging
@@ -17,9 +19,9 @@ class Chef
           Chef::Knife.run(command, opts)
           # believe this to be a problem -- if knife command would otherwise
           # indicate a chef error this creates a false positive
-          return 0
+          0
         rescue SystemExit => e
-          return e.status
+          abort("Chef run failed with status " + e.status.to_s)
         end
       end
 
@@ -28,35 +30,48 @@ class Chef
       end
 
       def knife_capture(command, args = [], input = nil)
-        if Gem.win_platform? == null
-          File.open('NUL:', 'r')
-        else
-          File.open('/dev/null', 'r')
-        end
+        @input = input
+        set_null
 
-        warn = $VERBOSE
-        $VERBOSE = nil
-        stderr = STDERR
-        stdout = STDOUT
-        stdin = STDIN
-
-        Object.const_set('STDERR', StringIO.new('', 'r+'))
-        Object.const_set('STDOUT', StringIO.new('', 'r+'))
-        Object.const_set('STDIN', input ? StringIO.new(input, 'r') : null)
-        $VERBOSE = warn
+        assign_io_channels
 
         status = Chef::Knife::API::Support.run_knife(command, args)
         return STDOUT.string, STDERR.string, status
       ensure
-        warn = $VERBOSE
-        $VERBOSE = nil
-        Object.const_set('STDERR', stderr)
-        Object.const_set('STDOUT', stdout)
-        Object.const_set('STDIN', stdin)
-        $VERBOSE = warn
-        null.close
+        revert_io_channels
       end
     end
+  end
+
+  def set_null
+    if Gem.win_platform? == null
+      File.open('NUL:', 'r')
+    else
+      File.open('/dev/null', 'r')
+    end
+  end
+
+  def assign_io_channels
+    @warn = $VERBOSE
+    $VERBOSE = nil
+    @stderr = STDERR
+    @stdout = STDOUT
+    @stdin = STDIN
+
+    Object.const_set('STDERR', StringIO.new('', 'r+'))
+    Object.const_set('STDOUT', StringIO.new('', 'r+'))
+    Object.const_set('STDIN', @input ? StringIO.new(@input, 'r') : null)
+    $VERBOSE = @warn
+  end
+
+  def revert_io_channels
+    @warn = $VERBOSE
+    $VERBOSE = nil
+    Object.const_set('STDERR', @stderr)
+    Object.const_set('STDOUT', @stdout)
+    Object.const_set('STDIN', @stdin)
+    $VERBOSE = @warn
+    null.close
   end
 end
 

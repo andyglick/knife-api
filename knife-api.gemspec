@@ -17,10 +17,11 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  gem.add_dependency 'chef', '>= 10.32', '< 13.0.0'
+  gem.add_dependency 'chef', '>= 10.32', '<= 12.6.0'
   gem.add_dependency 'chef-zero', '>= 2.2.1'
   gem.add_dependency 'ohai', '> 7.0.0', '< 9.0.0'
   gem.add_dependency 'json', '>= 1.8.2'
 
   gem.add_development_dependency 'rake', '>= 10.4.2'
+  gem.add_development_dependency 'codeclimate-test-reporter', '>= 0.4.8' # , group: :test, require: nil
 end
