@@ -30,48 +30,43 @@ class Chef
       end
 
       def knife_capture(command, args = [], input = nil)
-        @input = input
-        set_null
+        null = set_null
 
-        assign_io_channels
+        assign_io_channels(input, null)
 
         status = Chef::Knife::API::Support.run_knife(command, args)
         return STDOUT.string, STDERR.string, status
       ensure
-        revert_io_channels
+        revert_io_channels(null)
       end
     end
-  end
 
-  def set_null
-    if Gem.win_platform? == null
-      File.open('NUL:', 'r')
-    else
-      File.open('/dev/null', 'r')
+    def set_null
+      Gem.win_platform? ? File.open('NUL:', 'r') : File.open('/dev/null', 'r')
     end
-  end
 
-  def assign_io_channels
-    @warn = $VERBOSE
-    $VERBOSE = nil
-    @stderr = STDERR
-    @stdout = STDOUT
-    @stdin = STDIN
+    def assign_io_channels(input, null)
+      @warn = $VERBOSE
+      $VERBOSE = nil
+      @stderr = STDERR
+      @stdout = STDOUT
+      @stdin = STDIN
 
-    Object.const_set('STDERR', StringIO.new('', 'r+'))
-    Object.const_set('STDOUT', StringIO.new('', 'r+'))
-    Object.const_set('STDIN', @input ? StringIO.new(@input, 'r') : null)
-    $VERBOSE = @warn
-  end
+      Object.const_set('STDERR', StringIO.new('', 'r+'))
+      Object.const_set('STDOUT', StringIO.new('', 'r+'))
+      Object.const_set('STDIN', @input ? StringIO.new(input, 'r') : null)
+      $VERBOSE = @warn
+    end
 
-  def revert_io_channels
-    @warn = $VERBOSE
-    $VERBOSE = nil
-    Object.const_set('STDERR', @stderr)
-    Object.const_set('STDOUT', @stdout)
-    Object.const_set('STDIN', @stdin)
-    $VERBOSE = @warn
-    null.close
+    def revert_io_channels(null)
+      @warn = $VERBOSE
+      $VERBOSE = nil
+      Object.const_set('STDERR', @stderr)
+      Object.const_set('STDOUT', @stdout)
+      Object.const_set('STDIN', @stdin)
+      $VERBOSE = @warn
+      null.close
+    end
   end
 end
 
